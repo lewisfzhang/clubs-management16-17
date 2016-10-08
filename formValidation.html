@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset = "utf-8">
+		<title>Titles are cool</title>
+		<style type = "text/css">
+			.namefield {
+				padding-left: 100px;
+			}
+			.lastnamefield {
+				padding-left: 100px;
+			}
+			label.error {
+				font: normal 10px arial;
+				padding: 3px;
+				margin: 3px;
+				background-color: #ffc;
+				border: 1px solid #c00;
+			}
+		</style>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/jquery.validate.min.js"></script>
+		<script>
+		$(function() {
+			$( "#testform" ).validate({
+				rules: {
+					firstname: {
+						required: true,
+						minlength: 3,
+						maxlength: 20,
+						customvalidation: true
+					}
+				},
+				messages: {
+					firstname: {
+						required: "Come on, just type in your name",
+						minlength: jQuery.validator.format("You know your name is longer than that"),
+						maxlength: jQuery.validator.format("Whoa there buddy, maybe trim the name down a bit")
+					}
+				}
+
+			});
+				$.validator.addMethod("customvalidation",
+					function(value, element) {
+						return /^[A-Za-z\d=#$%@_ -]+$/.test(value);
+					},
+				"Sorry, no special characters allowed");
+		});
+		</script>
+	</head>
+	<body>
+		<h1 style="text-align:center; font-family:verdana" >
+			APPLY TO POSITION HERE
+		</h1>
+		<hr style = "width: 90%;"></hr>
+		<p style ="text-align:center; font-family:calibri"> 
+			So, you want to apply to this program? You should know, it involves lots of pointless busywork with little to no instruction. What's that? You still want to apply? Alright, your funeral, man.
+		</p>
+		<form id = "testform" action = "http://learncompsci.com/web/examples/forms/formReader.php"> 
+			First name:<br>
+			<input name="firstname">
+			<br>
+			Last name:<br>
+			<input type="text" class = "lastnamefield" name="lastname">
+			<br> <br>
+			<input type="radio" name="sex" value="male" checked>Male
+			<br>
+			<input type="radio" name="sex" value="female">Female <br><br>
+			<table border = ".5" style="width:100%">
+				<tr>
+					<td>Why do you want to work here?</td>
+					<td><input style = "width:100%;" type="text" name="workreason"></td>
+				</tr>
+				<tr>
+					<td>Are you sure you want to work here?</td>
+					<td><input style = "width: 100%;" type="text" name="areyousure"></td>
+				</tr>
+			</table><br>
+			<input type="checkbox" name="willdotediouswork" value="Bike">I am willing to spend a long time doing tedious work<br>
+			<input type="checkbox" name="workexperience" value="Bike">I have previous work experience<br><br>
+			<button class="submit" type = "submit"> Submit Form </button>
+		</form>
+	</body>
+
+
+</html>
